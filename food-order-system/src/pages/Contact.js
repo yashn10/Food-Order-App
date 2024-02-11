@@ -21,7 +21,7 @@ export default function Contact() {
         const { name, phone, desc } = message;
 
         try {
-            const response = await fetch('http://localhost:7000/contact', {
+            const response = await fetch('https://food-order-app-ukhn.onrender.com/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

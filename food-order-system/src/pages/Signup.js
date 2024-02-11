@@ -21,7 +21,7 @@ export default function Signup() {
     const { name, email, phone, password } = user;
 
     try {
-      const response = await fetch('http://localhost:7000/user', {
+      const response = await fetch('https://food-order-app-ukhn.onrender.com/user', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"

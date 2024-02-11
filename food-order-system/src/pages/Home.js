@@ -7,7 +7,7 @@ export default function Home() {
     const [food, setfood] = useState([]);
 
     const response = async () => {
-        let response = await fetch("http://localhost:7000/food", {
+        let response = await fetch("https://food-order-app-ukhn.onrender.com/food", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
