@@ -7,7 +7,7 @@ export default function Home() {
     const [food, setfood] = useState([]);
 
     const response = async () => {
-        let response = await fetch("https://food-order-app-ukhn.onrender.com/food", {
+        let response = await fetch("http://localhost:7000/food", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ export default function Home() {
         <div>
             <Navbar />
 
-            <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel" style={{ "padding-top": "4%" }}>
+            <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel" style={{ "paddingTop": "4%" }}>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img src="https://source.unsplash.com/1500x500/?samosa" className="d-block w-100" alt="..." />
@@ -56,7 +56,7 @@ export default function Home() {
                     {
                         food.map((data) => {
                             return (
-                                <div className="col-lg-3 mb-3 mb-sm-0">
+                                <div key={data._id} className="col-lg-3 mb-3 mb-sm-0">
                                     <div className="card">
                                         <img src={data.image} className="card-img-top" alt="..." />
                                         <div className="card-body">

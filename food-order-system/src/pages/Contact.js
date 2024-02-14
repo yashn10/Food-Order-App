@@ -53,9 +53,9 @@ export default function Contact() {
 
             <Navbar />
 
-            <div className="container" style={{ "padding-top": "8%", "width": "50%" }}>
+            <div className="container" style={{ "paddingTop": "8%", "width": "50%" }}>
 
-                <h2 style={{ "text-align": "center", "marginBottom": "20px" }}>Contact Us</h2>
+                <h2 style={{ "textAlign": "center", "marginBottom": "20px" }}>Contact Us</h2>
                 <hr />
 
                 <form method='POST'>

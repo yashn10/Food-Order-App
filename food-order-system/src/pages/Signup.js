@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import Navbar from '../components/Navbar';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Signup() {
+
+  const navigate = useNavigate();
 
   const [user, newuser] = useState({
     name: "", email: "", phone: "", password: ""
@@ -21,7 +23,7 @@ export default function Signup() {
     const { name, email, phone, password } = user;
 
     try {
-      const response = await fetch('https://food-order-app-ukhn.onrender.com/user', {
+      const response = await fetch('http://localhost:7000/user', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
@@ -33,12 +35,13 @@ export default function Signup() {
 
       const json = await response.json();
 
-      if (json) {
+      if (json.success) {
         console.log('User registered successfully');
         window.alert('Registration successfull');
+        navigate('/login');
       } else {
-        console.log('Error not registerd');
-        window.alert('Error during signup');
+        console.log('User already registered with same email');
+        window.alert('User already registered with same email');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -54,9 +57,9 @@ export default function Signup() {
 
       <Navbar />
 
-      <div className="container" style={{ "padding-top": "8%", "width": "60%" }}>
+      <div className="container" style={{ "paddingTop": "8%", "width": "60%" }}>
 
-        <h2 style={{ "text-align": "center", "marginBottom": "20px" }}>Signup Here</h2>
+        <h2 style={{ "textAlign": "center", "marginBottom": "20px" }}>Signup Here</h2>
         <hr />
 
         <form method='POST'>
@@ -67,7 +70,7 @@ export default function Signup() {
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" name="email" value={user.name} onChange={handleinputs}
+            <input type="email" className="form-control" id="exampleInputEmail1" name="email" value={user.email} onChange={handleinputs}
               aria-describedby="emailHelp" />
           </div>
           <div className="mb-3">
@@ -76,7 +79,7 @@ export default function Signup() {
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputContact1" className="form-label">Password</label>
-            <input type="password" className="form-control" name="password" value={user.phone} onChange={handleinputs} id="exampleInputContact1" />
+            <input type="password" className="form-control" name="password" value={user.password} onChange={handleinputs} id="exampleInputContact1" />
           </div>
           <div className="form-group">
             <button type="submit" className="btn btn-primary" onClick={response}>Submit</button>

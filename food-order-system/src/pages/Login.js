@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Navbar from '../components/Navbar'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { Usercontext } from '../App'
 
 
 export default function Login() {
+
+    const { state, dispatch } = useContext(Usercontext);
+
+    const navigate = useNavigate();
 
     const [user, loginuser] = useState({
         email: "", password: ""
@@ -22,8 +27,9 @@ export default function Login() {
         const { email, password } = user;
 
         try {
-            const response = await fetch('https://food-order-app-ukhn.onrender.com/login', {
+            const response = await fetch('http://localhost:7000/login', {
                 method: 'POST',
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -34,13 +40,14 @@ export default function Login() {
 
             const json = await response.json();
 
-            if (json) {
+            if (json.success) {
                 console.log('User signin successfully');
                 window.alert('Login successfull');
-                Navigate('/')
+                dispatch({ type: 'USER', payload: true })
+                navigate('/');
             } else {
-                console.log('Error not signin');
-                window.alert('Error during signin');
+                console.log('Invalid credentials');
+                window.alert('Invalid credentials');
             }
         } catch (error) {
             console.error('Error:', error);
@@ -55,7 +62,7 @@ export default function Login() {
 
             <Navbar />
 
-            <div className="container" style={{ "padding-top": "8%", "width": "50%" }}>
+            <div className="container" style={{ "paddingTop": "8%", "width": "50%" }}>
 
                 <h2 className='text-center'>Login Here</h2>
                 <hr />
@@ -78,7 +85,6 @@ export default function Login() {
             </div>
 
         </div>
-
 
     )
 

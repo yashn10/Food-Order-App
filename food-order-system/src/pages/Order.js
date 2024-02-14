@@ -7,7 +7,7 @@ const Order = () => {
     const [food, setfood] = useState([])
 
     const response = async () => {
-        const response = await fetch('https://food-order-app-ukhn.onrender.com/food', {
+        const response = await fetch('http://localhost:7000/food', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json"
@@ -21,7 +21,7 @@ const Order = () => {
 
     useEffect(() => {
         response()
-    }, [])
+    })
 
 
     return (
@@ -29,12 +29,12 @@ const Order = () => {
         <div>
             <Navbar />
 
-            <div className='container' style={{ "padding-top": "8%" }}>
+            <div className='container' style={{ "paddingTop": "8%" }}>
                 <div className="row">
                     {
                         food.map((data) => {
                             return (
-                                <div className="col-lg-3 mb-3 mb-sm-0">
+                                <div key={data._id} className="col-lg-3 mb-3 mb-sm-0">
                                     <div className="card">
                                         <img src={data.image} className="card-img-top" alt="..." />
                                         <div className="card-body">
