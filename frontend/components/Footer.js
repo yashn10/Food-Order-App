@@ -48,9 +48,7 @@ const Footer = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-12">
-                            <p className="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free Html
-                                Templates</a>
-                                Distribution by <a href="https://themewagon.com">ThemeWagon</a></p>
+                            <p className="copyright_text">2024 All Rights Reserved. Design and owned by Urban Eats</p>
                         </div>
                     </div>
                 </div>

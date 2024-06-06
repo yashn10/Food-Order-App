@@ -87,7 +87,8 @@ const Navbar = () => {
 
       <div className="container">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="index.html"><img src="images/logo.png" /></a>
+          <Link className="navbar-brand" href={"/"} style={{ color: "white", fontSize: "25px", fontWeight: "bold" }}>Urban Eats</Link>
+          {/* <a className="navbar-brand" href="index.html"><img src="images/logo.png" /></a> */}
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -123,8 +124,8 @@ const Navbar = () => {
                       <p className="banner_text">more-or-less normal distribution of letters, as opposed to using
                       </p>
                       <div className="btn_main">
-                        <div className="about_bt active"><a href="#">About Us</a></div>
-                        <div className="callnow_bt"><a href="#">Call Now</a></div>
+                        <div className="about_bt active"><Link href={"/about"}>About Us</Link></div>
+                        <div className="callnow_bt"><Link href={"/order"}>Order Now</Link></div>
                       </div>
                     </div>
                   </div>
@@ -138,8 +139,8 @@ const Navbar = () => {
                       <p className="banner_text">more-or-less normal distribution of letters, as opposed to using
                       </p>
                       <div className="btn_main">
-                        <div className="about_bt active"><a href="#">About Us</a></div>
-                        <div className="callnow_bt"><a href="#">Call Now</a></div>
+                        <div className="about_bt active"><Link href={"/about"}>About Us</Link></div>
+                        <div className="callnow_bt"><Link href={"/order"}>Order Now</Link></div>
                       </div>
                     </div>
                   </div>
