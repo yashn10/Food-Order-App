@@ -16,7 +16,7 @@ const port = process.env.PORT
 require('./db/db');
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000', // or an array of allowed origins
+    origin: 'https://food-order-app-pink.vercel.app', // or an array of allowed origins
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // enable credentials (cookies, authorization headers, etc.)
 }));
