@@ -27,6 +27,8 @@ app.use(cors({
     credentials: true, // enable credentials (cookies, authorization headers, etc.)
 }));
 
+app.options('*', cors());
+
 
 app.use(routes);
 
