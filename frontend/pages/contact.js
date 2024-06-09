@@ -17,7 +17,7 @@ const contact = () => {
     const { name, phone, desc } = contacts;
 
     try {
-      const response = await fetch('http://localhost:7000/contact', {
+      const response = await fetch('https://food-order-app-ukhn.onrender.com/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

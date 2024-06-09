@@ -23,7 +23,7 @@ const login = () => {
         const { email, password } = user;
 
         try {
-            const response = await fetch('http://localhost:7000/login', {
+            const response = await fetch('https://food-order-app-ukhn.onrender.com/login', {
                 method: 'POST',
                 credentials: "include",
                 headers: {
