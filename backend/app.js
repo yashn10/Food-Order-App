@@ -15,26 +15,19 @@ const allowedOrigins = [
     'https://food-order-app-pink.vercel.app'
 ];
 
-const corsOptions = {
+app.use(cors({
     origin: function (origin, callback) {
-        console.log('Request Origin:', origin);  // Log the request origin
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) !== -1) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
-            console.error('Blocked by CORS:', origin);  // Log blocked origin
             callback(new Error('Not allowed by CORS'));
         }
     },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-};
+    credentials: true, // enable credentials (cookies, authorization headers, etc.)
+}));
 
-
-app.use(cors(corsOptions));
-
-// Handle preflight requests
-app.options('*', cors(corsOptions));
+app.options('*', cors());
 
 
 app.use(routes);
