@@ -9,6 +9,7 @@ const login = () => {
     const [user, loginuser] = useState({
         email: "", password: ""
     })
+    const [loading, setLoading] = useState(false);
 
     const handleinput = (e) => {
         const name = e.target.name
@@ -18,6 +19,7 @@ const login = () => {
     }
 
     const submit = async (e) => {
+        setLoading(true);
         e.preventDefault();
 
         const { email, password } = user;
@@ -72,7 +74,7 @@ const login = () => {
                                 <input type="email" className="mail_text" placeholder="Your Email" name="email" onChange={handleinput} value={user.email} />
                                 <input type="password" className="mail_text" placeholder="Your Password" name="password" onChange={handleinput} value={user.password} />
 
-                                <div className="send_bt"><a href="" type='submit' onClick={submit}>Login</a></div>
+                                <div className="send_bt"><a href="" type='submit' onClick={submit} disabled={loading}>{loading ? 'Logging in...' : 'Login'}</a></div>
                             </form>
                         </div>
                     </div>
