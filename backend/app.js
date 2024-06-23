@@ -7,7 +7,7 @@ const port = process.env.PORT
 
 
 app.use(cors({
-    origin: ['http://localhost:7000', 'https://food-order-app-ukhn.onrender.com'], // Add your domains here
+    origin: ['http://localhost:7000', 'https://food-order-app-ukhn.onrender.com', 'https://food-order-app-pink.vercel.app'], // Add your domains here
     methods: ['GET', 'POST', 'OPTIONS', 'DELETE', 'PUT'],
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept']
 }));
