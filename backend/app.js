@@ -13,8 +13,8 @@ app.use(cors({
 }));
 
 
-require('./db/db');
 app.use(express.json());
+require('./db/db');
 app.use(routes);
 
 
