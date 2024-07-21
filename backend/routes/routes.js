@@ -18,6 +18,16 @@ router.get("/food", async (req, res) => {
 })
 
 
+router.get("/food/:id", async (req, res) => {
+    try {
+        const food = await Food.findById(req.params.id);
+        res.status(201).json(food);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+})
+
+
 router.post("/contact", async (req, res) => {
 
     const { name, phone, desc } = req.body;

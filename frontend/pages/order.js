@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link';
 
 const order = () => {
 
-  const [food, setfood] = useState([])
+  const [food, setfood] = useState([]);
+  const [loggedin, setLoggedin] = useState(false);
+
 
   const response = async () => {
-    const response = await fetch('https://food-order-app-ukhn.onrender.com/food', {
+    const response = await fetch('http://localhost:7000/food', {
       method: 'GET',
       headers: {
         "Content-Type": "application/json"
@@ -13,12 +16,38 @@ const order = () => {
     })
 
     const json = await response.json();
-
     setfood(json);
   }
 
+
+  const addToCart = (product) => {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      alert('Please log in to add items to your cart.');
+      return;
+    }
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const existingProductIndex = cart.findIndex((item) => item._id === product._id);
+    if (existingProductIndex !== -1) {
+      cart[existingProductIndex].quantity += 1;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert('Product added to cart!');
+  };
+
+
   useEffect(() => {
     response();
+
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setLoggedin(true);
+    }
   }, [])
 
 
@@ -163,26 +192,27 @@ const order = () => {
       </div>
 
 
-      <div class="blog_section layout_padding">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <h1 class="about_taital">Our Menu</h1>
+      <div className="blog_section layout_padding">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <h1 className="about_taital">Our Menu</h1>
             </div>
           </div>
-          <div class="blog_section_2">
-            <div class="row">
+          <div className="blog_section_2">
+            <div className="row">
               {
                 food.map((data) => {
                   return (
-                    <div class="col-md-3" key={data._id}>
-                      <div class="blog_box">
-                        <div class="blog_img"><img src={data.image} /></div>
-                        <h4 class="date_text">{data.price} INR</h4>
-                        <h4 class="prep_text">{data.title}</h4>
-                        <p class="lorem_text">{data.desc}</p>
+                    <div className="col-md-3" key={data._id}>
+                      <div className="blog_box">
+                        <div className="blog_img"><img src={data.image} /></div>
+                        <h4 className="date_text">{data.price} INR</h4>
+                        <h4 className="prep_text">{data.title}</h4>
+                        <p className="lorem_text">{data.desc}</p>
                       </div>
-                      <div class="read_btn"><a href="#">Read More</a></div>
+                      <div className="read_btn" onClick={() => addToCart(data)}><a href="#">Add to cart</a></div>
+                      <div className="read_btn"><Link href={`/details/${data._id}`}>Read More</Link></div>
                     </div>
                   )
                 })

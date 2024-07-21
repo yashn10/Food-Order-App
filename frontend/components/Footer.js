@@ -34,11 +34,6 @@ const Footer = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="form-group">
-                                <textarea className="update_mail" placeholder="Your Email" rows="5" id="comment"
-                                    name="Your Email"></textarea>
-                                <div className="subscribe_bt"><a href="#"><i className="fa fa-arrow-right" aria-hidden="true"></i></a></div>
-                            </div>
                         </div>
                     </div>
                 </div>

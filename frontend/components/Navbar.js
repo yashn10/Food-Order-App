@@ -1,28 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Navbar = () => {
 
-  const [loggedin, setLoggedin] = useState(false);
+  const router = useRouter();
+  // Check if running in the browser environment
+  const isBrowser = typeof window !== 'undefined';
+  // Initialize login status
+  const login = isBrowser ? localStorage.getItem('authToken') : null;
+
 
   const logout = () => {
     localStorage.removeItem('authToken');
-    setLoggedin(false);
     window.alert("User logged out successfully");
     console.log("User logged out successfully");
+    router.push('/');
   }
-
-  useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      setLoggedin(true);
-    }
-  }, []);
 
 
   const Navbarmenu = () => {
-
-    if (loggedin) {
+    if (login) {
       return (
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
@@ -34,6 +32,9 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link href={"/order"}>Order</Link>
+            </li>
+            <li className="nav-item">
+              <Link href={"/cart"}>Cart</Link>
             </li>
             <li className="nav-item">
               <Link href={"/contact"}>Contact</Link>
