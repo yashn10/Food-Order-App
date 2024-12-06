@@ -7,7 +7,6 @@ const contact = () => {
   })
 
   const handleinput = (e) => {
-
     setcontacts({ ...contacts, [e.target.name]: e.target.value })
   }
 

@@ -11,7 +11,6 @@ const signup = () => {
     });
 
     const handleinputs = (e) => {
-
         newUser({ ...user, [e.target.name]: e.target.value });
     }
 

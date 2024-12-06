@@ -100,16 +100,10 @@ router.post("/login", async (req, res) => {
         } else {
             try {
                 const ismatch = await bcrypt.compare(password, userexist.password);
-                const token = await userexist.generateAuthToken();
-                // console.log(token);
 
-                res.cookie("token hai", token, {
-                    expires: new Date(Date.now() + 172800000),
-                    httpOnly: true,
-                    // secure: true  // Set this if your site uses HTTPS
-                });
 
                 if (ismatch) {
+                    const token = await userexist.generateAuthToken();
                     success = true
                     return res.status(201).json({ success, token, message: "User login successfully" });
                 } else {
